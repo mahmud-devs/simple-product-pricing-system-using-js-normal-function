@@ -6,21 +6,19 @@
 
 function originalPrice(unitPrice, unitPriduct) {
     let priceOriginal = unitPrice * unitPriduct;
-    console.log("original price without any extra charge", priceOriginal);
     return priceOriginal;
 }
 
 function priceWithVat(returnPriceOriginal, vat) {
     let vatAddedPrice =
         (returnPriceOriginal * vat) / (100 + vat) + returnPriceOriginal;
-    console.log("Total price with vat", Math.ceil(vatAddedPrice));
     return Math.ceil(vatAddedPrice);
 }
 
 function finalPrice(returnVatAddedPrice, discount) {
     let priceFinal =
         returnVatAddedPrice - (returnVatAddedPrice * discount) / 100;
-    console.log('Final price with discount:', Math.ceil(priceFinal) );
+    return Math.ceil(priceFinal);
 }
 
 // ============ perameters =============
@@ -31,9 +29,9 @@ let unitPrice = Number(price);
 let product = prompt("Enter product quantity:");
 let unitPriduct = parseInt(product);
 
-let vat = 30;
+let vat = 15;
 
-let discount = 50;
+let discount = 5;
 // ============== invoking original price function ===============
 
 returnPriceOriginal = originalPrice(unitPrice, unitPriduct);
@@ -44,4 +42,14 @@ returnVatAddedPrice = priceWithVat(returnPriceOriginal, vat);
 
 // ================ invoking vat added price with discount function =========
 
-finalPrice(returnVatAddedPrice, discount);
+returnPriceFinal = finalPrice(returnVatAddedPrice, discount);
+
+// ================ outputs =====================
+
+console.log(
+    "original price without any extra charge:",
+    returnPriceOriginal,
+    "taka"
+);
+console.log("Total price with vat:", returnVatAddedPrice, "taka");
+console.log("Final price with discount:", returnPriceFinal, "taka");
